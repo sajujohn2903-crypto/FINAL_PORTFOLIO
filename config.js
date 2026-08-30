@@ -6,7 +6,7 @@
 const CONFIG = {
   name: "John Saju",
   role: "UI/UX Designer",
-  tagline: "Crafting interfaces worth reading twice.",
+  tagline: "Designed to Matter.",
   issueLine: "Est. 2024 — Vol. I, No. 07",
   maskheadShort: "JO",
 
