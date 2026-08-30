@@ -6,7 +6,7 @@
 const CONFIG = {
   name: "John Saju",
   role: "UI/UX Designer",
-  tagline: "Designed to Matter.",
+  tagline: "Crafting interfaces worth reading twice.",
   issueLine: "Est. 2024 — Vol. I, No. 07",
   maskheadShort: "JO",
 
@@ -26,7 +26,7 @@ const CONFIG = {
       // Swap this for a real photo any time — set url to an image link
       // (e.g. from the award ceremony) and it will be used automatically.
       url: "",
-      caption: "Photograph: IDI Award 2025"
+      caption: "Photograph: Award Ceremony 2025"
     }
   },
 
@@ -34,22 +34,62 @@ const CONFIG = {
     eyebrow: "Works",
     headline: "The Young Man's Best Works",
     blurb: "A collection of projects, united by one approach: start with the people, understand the problem, and work backward to the experience. From digital products and services to visual systems and everything in between, each project is a different investigation into how design can make things work better.",
+    // Shown on works.html itself — kept deliberately different from the
+    // teaser blurb above, so the two pages don't repeat the same copy.
+    pageIntro: "Three beats. Three disciplines. One designer with plenty to say. Browse the sections below for the full report, from the big ideas to the tiny details, every project has a story worth reading.",
     photo: {
       // Swap this for a real photo any time — set url to an image link
       // (e.g. a hero shot from one of the projects) and it will be used
       // automatically.
-      url: "artgallery.jpg",
+      url: "",
       caption: "A look at the work"
     }
   },
 
+  // The three work categories, each with its own dedicated page.
+  // "page" must match the actual filename of that category's HTML file.
+  workCategories: [
+    {
+      slug: "ui-ux-design",
+      icon: "uiux",
+      name: "UI/UX Design",
+      blurb: "Digital products and services, designed from the person under pressure backward to the interface — the core of the work.",
+      page: "work-ui-ux.html"
+    },
+    {
+      slug: "motion-graphics",
+      icon: "motion",
+      name: "Motion Graphics",
+      blurb: "Movement, timing and story — from short edits to animated sequences that give a brand or an idea some momentum.",
+      page: "work-motion-graphics.html"
+    },
+    {
+      slug: "graphic-design",
+      icon: "graphic",
+      name: "Graphic Design",
+      blurb: "Visual identity, layout and type — the flatter, quieter craft that a lot of the digital work still leans on.",
+      page: "work-graphic-design.html"
+    }
+  ],
+
   projects: [
-    { tag:"Fintech · Product", title:"Ledger", blurb:"A redesigned expense workflow that cut approval time for finance teams by more than half.", diagram:"browser" },
-    { tag:"Healthcare · App", title:"Pulse", blurb:"A patient intake app rebuilt around clarity, reducing form abandonment in early trials.", diagram:"mobile" },
-    { tag:"Civic · Platform", title:"Commons", blurb:"A public services portal connecting twelve departments behind one consistent interface.", diagram:"flow" },
-    { tag:"Data · Dashboard", title:"Meridian", blurb:"An operations dashboard turning noisy telemetry into a handful of decisions worth making.", diagram:"chart" },
-    { tag:"Research · System", title:"Fieldnote", blurb:"A lightweight research repository built for teams who never had time to file their notes.", diagram:"nodes" },
-    { tag:"Brand · Design System", title:"Typeset", blurb:"A component and type system unifying six product teams under one visual language.", diagram:"swatch" }
+    { tag:"Fintech · Product", title:"Ledger", blurb:"A redesigned expense workflow that cut approval time for finance teams by more than half.", diagram:"browser", category:"ui-ux-design" },
+    { tag:"Healthcare · App", title:"Pulse", blurb:"A patient intake app rebuilt around clarity, reducing form abandonment in early trials.", diagram:"mobile", category:"ui-ux-design" },
+    { tag:"Civic · Platform", title:"Commons", blurb:"A public services portal connecting twelve departments behind one consistent interface.", diagram:"flow", category:"ui-ux-design" },
+    { tag:"Data · Dashboard", title:"Meridian", blurb:"An operations dashboard turning noisy telemetry into a handful of decisions worth making.", diagram:"chart", category:"ui-ux-design" },
+    { tag:"Research · System", title:"Fieldnote", blurb:"A lightweight research repository built for teams who never had time to file their notes.", diagram:"nodes", category:"ui-ux-design" },
+    { tag:"Brand · Design System", title:"Typeset", blurb:"A component and type system unifying six product teams under one visual language.", diagram:"swatch", category:"ui-ux-design" },
+
+    // Placeholders — replace title/tag/blurb with your own motion work.
+    // Add as many more { ... } entries here as you like, same shape.
+    { tag:"Motion · Project", title:"Project Title", blurb:"Add a description of this motion graphics project here.", diagram:"chart", category:"motion-graphics" },
+    { tag:"Motion · Project", title:"Project Title", blurb:"Add a description of this motion graphics project here.", diagram:"flow", category:"motion-graphics" },
+    { tag:"Motion · Project", title:"Project Title", blurb:"Add a description of this motion graphics project here.", diagram:"nodes", category:"motion-graphics" },
+
+    // Placeholders — replace title/tag/blurb with your own graphic design work.
+    { tag:"Graphic · Project", title:"Project Title", blurb:"Add a description of this graphic design project here.", diagram:"swatch", category:"graphic-design" },
+    { tag:"Graphic · Project", title:"Project Title", blurb:"Add a description of this graphic design project here.", diagram:"browser", category:"graphic-design" },
+    { tag:"Graphic · Project", title:"Project Title", blurb:"Add a description of this graphic design project here.", diagram:"mobile", category:"graphic-design" }
   ],
 
   aboutIntro: {
@@ -65,7 +105,7 @@ const CONFIG = {
   },
 
   about: [
-    "BELFAST, NORTHERN IRELAND — In what experts are calling a rather convenient career choice, John Saju has made a habit of poking at everyday problems and asking, \u201cSurely there\u2019s a better way to do this?\u201d Armed with a background in Animation & Visual Effects and a Master\u2019s in User Experience & Service Design, John has traded timelines for user flows, keyframes for wireframes, and the occasional existential crisis for a well-organised Figma file. His work sits somewhere between design, storytelling and technology — with a particular interest in making digital experiences that are not only useful, but actually enjoyable to use."
+    "BELFAST, NORTHERN IRELAND — In what experts are calling a rather convenient career choice, John Saju has made a habit of poking at everyday problems and asking, \u201cSurely there\u2019s a better way to do this?\u201d Armed with a background in Animation & Visual Effects and a Master\u2019s in User Experience & Service Design, John has traded timelines for user flows, keyframes for wireframes, and the occasional existential crisis for a well-organised Figma file. His work sits somewhere between design, storytelling and technology, with a particular interest in making digital experiences that are not only useful, but actually enjoyable to use."
   ],
 
   // Sub-headed sections dropped between the first and second paragraphs
@@ -95,7 +135,7 @@ const CONFIG = {
     // Swap this for a real photo any time — replace the src on the
     // <img id="about-photo-img"> tag, or point this url at your image
     // and it will be used automatically.
-    url: "headshot.jpg",
+    url: "",
     caption: "John Saju, UI/UX Designer"
   },
 

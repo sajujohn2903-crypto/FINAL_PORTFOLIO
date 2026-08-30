@@ -1,95 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>About — The JO Times</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — The Design Times</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<div class="shell">
+<div class="grain-overlay"></div>
 
-  <header id="front">
-    <div class="topbar mono">
-      <span id="topbar-left"></span>
-      <span id="topbar-right"></span>
+<nav class="masthead-nav" id="masthead-nav">
+  <div class="nav-mark" id="nav-mark">THE <span>DESIGN</span> TIMES</div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+  </ul>
+</nav>
+
+<main class="static-page">
+  <div class="static-page-inner" style="max-width:900px;">
+    <a class="back-link" href="index.html">&larr; Back to Home</a>
+
+    <div class="article-card">
+      <div class="section-eyebrow" id="about-article-eyebrow" style="text-align:center;">Profile</div>
+      <h1 class="article-headline" id="about-article-headline">About Me</h1>
+      <div class="article-byline" id="about-article-byline">By the Author</div>
+      <div class="article-body" id="about-article-body"><!-- filled by JS --></div>
     </div>
-    <div class="masthead">
-      <div>
-        <h1 class="masthead__title" id="masthead-title"></h1>
-        <div class="masthead__sub">
-          <span class="mono" id="masthead-role"></span>
-          <span class="mono mono--mute" id="masthead-tagline"></span>
-        </div>
-      </div>
-      <div class="masthead__meta mono" id="masthead-meta"></div>
-    </div>
-    <nav class="nav" aria-label="Sections">
-      <ul class="nav__list">
-        <li><a href="index.html">Front Page</a></li>
-        <li><a href="index.html#work">Works</a></li>
-        <li><a href="index.html#contact">Contact</a></li>
-      </ul>
-      <p class="nav__status mono"><span class="dot"></span> <span id="nav-status"></span></p>
-    </nav>
-  </header>
-
-  <div class="band">
-    <a class="link back" href="index.html">&larr; Back to Home</a>
-
-    <div class="article-head">
-      <p class="mono mono--l mono--red" id="article-eyebrow" style="margin-bottom:1.2em"></p>
-      <h1 id="article-headline"></h1>
-      <p class="article-byline mono" id="article-byline"></p>
-    </div>
-
-    <div class="article-body" id="article-body"></div>
   </div>
-
-  <footer class="foot">
-    <div class="foot__top">
-      <p class="foot__mast" id="foot-mast"></p>
-      <div class="foot__meta mono" id="foot-meta"></div>
-    </div>
-    <p class="endmark"><span>End of edition</span></p>
-  </footer>
-
-</div>
+</main>
 
 <script src="config.js"></script>
 <script>
-document.getElementById('topbar-left').textContent = `${CONFIG.name} — Independent Design Portfolio`;
-document.getElementById('topbar-right').textContent = CONFIG.tagline;
-document.getElementById('masthead-title').innerHTML = `THE <span class="amp">${CONFIG.maskheadShort}</span> TIMES`;
-document.getElementById('masthead-role').textContent = CONFIG.role;
-document.getElementById('masthead-tagline').textContent = CONFIG.tagline;
-document.getElementById('masthead-meta').innerHTML = `<span>${CONFIG.issueLine}</span><span>${CONFIG.contact.location}</span>`;
-document.getElementById('nav-status').textContent = `Portfolio last updated ${new Date().getFullYear()}`;
+document.getElementById('nav-mark').innerHTML = `THE <span>${CONFIG.maskheadShort}</span> TIMES`;
 
 const AA = CONFIG.aboutArticle;
-document.getElementById('article-eyebrow').textContent = AA.eyebrow;
-document.getElementById('article-headline').textContent = AA.headline;
-document.getElementById('article-byline').textContent = AA.byline;
+document.getElementById('about-article-eyebrow').textContent = AA.eyebrow;
+document.getElementById('about-article-headline').textContent = AA.headline;
+document.getElementById('about-article-byline').textContent = AA.byline;
 
-/* a simple line-art placeholder used for any image without a real url yet */
+// a simple drawn placeholder used for any image without a real url yet
 function placeholderPhotoSVG(){
-  return `<svg viewBox="0 0 160 90" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="40" cy="30" r="10" fill="none" stroke="var(--ink)" stroke-width="2.5"/>
-    <path d="M4 84 L52 40 L82 66 L118 26 L156 84 Z" fill="none" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>
+  return `<svg viewBox="0 0 160 90" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+    <rect width="160" height="90" fill="var(--muted)"/>
+    <circle cx="34" cy="26" r="10" fill="var(--ink)" opacity="0.85"/>
+    <path d="M0 90 L45 45 L75 70 L110 30 L160 90 Z" fill="var(--ink)" opacity="0.85"/>
   </svg>`;
 }
-function plateHTML(img, extraClass){
+function inlineImageHTML(img){
   const media = img.url
     ? `<img src="${img.url}" alt="">`
-    : `<div class="plate__icon">${placeholderPhotoSVG()}</div>`;
-  return `<figure class="${extraClass || ''}">
-    <div class="plate article-plate">${media}</div>
-    <figcaption><span>${img.caption}</span></figcaption>
-  </figure>`;
+    : `<div class="placeholder-img">${placeholderPhotoSVG()}</div>`;
+  return `<figure class="article-inline-image">${media}<figcaption>${img.caption}</figcaption></figure>`;
 }
 
 // build the article body in a fixed feature-page layout:
@@ -106,7 +71,7 @@ let bodyHtml = '';
 if(paragraphs[0]){
   bodyHtml += `<div class="article-row split">
     <p class="drop-cap">${paragraphs[0]}</p>
-    ${images[0] ? plateHTML(images[0]) : ''}
+    ${images[0] ? inlineImageHTML(images[0]) : ''}
   </div>`;
 }
 subsections.forEach(sub=>{
@@ -114,41 +79,24 @@ subsections.forEach(sub=>{
 });
 if(paragraphs[1]){
   bodyHtml += `<div class="article-row split">
-    ${images[1] ? plateHTML(images[1]) : ''}
+    ${images[1] ? inlineImageHTML(images[1]) : ''}
     <p>${paragraphs[1]}</p>
   </div>`;
 }
 if(paragraphs[2]){
   bodyHtml += `<div class="article-row stacked">
     <p>${paragraphs[2]}</p>
-    ${images[2] ? plateHTML(images[2]) : ''}
+    ${images[2] ? inlineImageHTML(images[2]) : ''}
   </div>`;
 }
 for(let i = 3; i < paragraphs.length; i++){
   bodyHtml += `<p>${paragraphs[i]}</p>`;
 }
-document.getElementById('article-body').innerHTML = bodyHtml;
+document.getElementById('about-article-body').innerHTML = bodyHtml;
 
-document.getElementById('foot-mast').innerHTML = `THE <span class="amp">${CONFIG.maskheadShort}</span> TIMES`;
-document.getElementById('foot-meta').innerHTML = `
-  <span>${CONFIG.name} — ${CONFIG.role}</span>
-  <span>Set in Bodoni Moda, Newsreader &amp; IBM Plex Mono</span>
-  <span>${CONFIG.contact.finePrint}</span>
-`;
-
-/* nav shadow-free scroll spy not needed on this page; reveal on scroll only */
-const targets = document.querySelectorAll('.band, .foot, header#front');
-if('IntersectionObserver' in window){
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('is-in'); io.unobserve(e.target); } });
-  }, { rootMargin:'0px 0px -10% 0px', threshold:0 });
-  targets.forEach(t=>io.observe(t));
-} else {
-  targets.forEach(t=>t.classList.add('is-in'));
-}
-requestAnimationFrame(()=>{
-  document.querySelector('header#front').classList.add('is-in');
-  document.querySelector('.band').classList.add('is-in');
+// nav shadow on scroll, to match the home page's masthead behavior
+window.addEventListener('scroll', ()=>{
+  document.getElementById('masthead-nav').classList.toggle('scrolled', window.scrollY > 10);
 });
 </script>
 </body>
