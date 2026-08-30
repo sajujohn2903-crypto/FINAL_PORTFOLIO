@@ -38,7 +38,7 @@ const CONFIG = {
       // Swap this for a real photo any time — set url to an image link
       // (e.g. a hero shot from one of the projects) and it will be used
       // automatically.
-      url: "",
+      url: "artgallery.jpg",
       caption: "A look at the work"
     }
   },
@@ -95,7 +95,7 @@ const CONFIG = {
     // Swap this for a real photo any time — replace the src on the
     // <img id="about-photo-img"> tag, or point this url at your image
     // and it will be used automatically.
-    url: "",
+    url: "johnimage.png",
     caption: "John Saju, UI/UX Designer"
   },
 
