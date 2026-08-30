@@ -95,7 +95,7 @@ const CONFIG = {
     // Swap this for a real photo any time — replace the src on the
     // <img id="about-photo-img"> tag, or point this url at your image
     // and it will be used automatically.
-    url: "johnimage.png",
+    url: "headshot.jpg",
     caption: "John Saju, UI/UX Designer"
   },
 
