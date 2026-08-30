@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Work — The JO Times</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="cursor" id="cursor" aria-hidden="true">View &rarr;</div>
+
+<div class="shell">
+
+  <header id="front">
+    <div class="topbar mono">
+      <span id="topbar-left"></span>
+      <span id="topbar-right"></span>
+    </div>
+    <div class="masthead">
+      <div>
+        <h1 class="masthead__title" id="masthead-title"></h1>
+        <div class="masthead__sub">
+          <span class="mono" id="masthead-role"></span>
+          <span class="mono mono--mute" id="masthead-tagline"></span>
+        </div>
+      </div>
+      <div class="masthead__meta mono" id="masthead-meta"></div>
+    </div>
+    <nav class="nav" aria-label="Sections">
+      <ul class="nav__list">
+        <li><a href="index.html">Front Page</a></li>
+        <li><a href="index.html#about">About Me</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <p class="nav__status mono"><span class="dot"></span> <span id="nav-status"></span></p>
+    </nav>
+  </header>
+
+  <div class="band band--tight">
+    <a class="link back" href="index.html">&larr; Back to Home</a>
+    <div class="sechead">
+      <h2 id="work-h">The Work</h2>
+      <div class="sechead__meta mono" id="works-meta"></div>
+    </div>
+    <p class="teaser__dek" id="works-blurb" style="margin-top:clamp(16px,2vw,26px)"></p>
+  </div>
+
+  <div id="stories"></div>
+
+  <footer class="foot">
+    <div class="foot__top">
+      <p class="foot__mast" id="foot-mast"></p>
+      <div class="foot__meta mono" id="foot-meta"></div>
+    </div>
+    <p class="endmark"><span>End of edition</span></p>
+  </footer>
+
+</div>
+
+<script src="config.js"></script>
+<script>
+document.getElementById('topbar-left').textContent = `${CONFIG.name} — Independent Design Portfolio`;
+document.getElementById('topbar-right').textContent = CONFIG.tagline;
+document.getElementById('masthead-title').innerHTML = `THE <span class="amp">${CONFIG.maskheadShort}</span> TIMES`;
+document.getElementById('masthead-role').textContent = CONFIG.role;
+document.getElementById('masthead-tagline').textContent = CONFIG.tagline;
+document.getElementById('masthead-meta').innerHTML = `<span>${CONFIG.issueLine}</span><span>${CONFIG.contact.location}</span>`;
+document.getElementById('nav-status').textContent = `Portfolio last updated ${new Date().getFullYear()}`;
+document.getElementById('works-meta').innerHTML = `<span>${CONFIG.projects.length} selected projects</span>`;
+document.getElementById('works-blurb').textContent = CONFIG.works.blurb;
+
+/* ---------- project diagrams (simple wireframe-style line art) ---------- */
+function projectSVG(kind){
+  const ink = 'var(--ink)';
+  const s = `stroke="${ink}" stroke-width="2" fill="none"`;
+  const wrap = (inner)=>`<svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">${inner}</svg>`;
+  switch(kind){
+    case 'browser':
+      return wrap(`<rect x="6" y="8" width="108" height="64" ${s}/>
+        <line x1="6" y1="22" x2="114" y2="22" ${s}/>
+        <circle cx="14" cy="15" r="2" fill="${ink}"/><circle cx="21" cy="15" r="2" fill="${ink}"/><circle cx="28" cy="15" r="2" fill="${ink}"/>
+        <rect x="14" y="30" width="40" height="8" ${s}/>
+        <line x1="14" y1="46" x2="90" y2="46" ${s}/>
+        <line x1="14" y1="54" x2="76" y2="54" ${s}/>
+        <line x1="14" y1="62" x2="98" y2="62" ${s}/>`);
+    case 'mobile':
+      return wrap(`<rect x="40" y="6" width="40" height="68" rx="4" ${s}/>
+        <line x1="46" y1="18" x2="74" y2="18" ${s}/>
+        <rect x="46" y="26" width="28" height="16" ${s}/>
+        <line x1="46" y1="48" x2="74" y2="48" ${s}/>
+        <line x1="46" y1="54" x2="64" y2="54" ${s}/>
+        <rect x="46" y="60" width="28" height="6" ${s}/>`);
+    case 'flow':
+      return wrap(`<circle cx="18" cy="40" r="9" ${s}/>
+        <circle cx="60" cy="18" r="9" ${s}/>
+        <circle cx="60" cy="62" r="9" ${s}/>
+        <circle cx="102" cy="40" r="9" ${s}/>
+        <line x1="26" y1="35" x2="52" y2="22" ${s}/>
+        <line x1="26" y1="45" x2="52" y2="58" ${s}/>
+        <line x1="69" y1="20" x2="93" y2="37" ${s}/>
+        <line x1="69" y1="60" x2="93" y2="43" ${s}/>`);
+    case 'chart':
+      return wrap(`<line x1="12" y1="68" x2="112" y2="68" ${s}/>
+        <line x1="12" y1="10" x2="12" y2="68" ${s}/>
+        <rect x="24" y="46" width="12" height="22" fill="${ink}"/>
+        <rect x="44" y="30" width="12" height="38" fill="${ink}"/>
+        <rect x="64" y="52" width="12" height="16" fill="${ink}"/>
+        <rect x="84" y="20" width="12" height="48" fill="${ink}"/>`);
+    case 'nodes':
+      return wrap(`<rect x="10" y="14" width="30" height="18" ${s}/>
+        <rect x="46" y="34" width="30" height="18" ${s}/>
+        <rect x="82" y="14" width="30" height="18" ${s}/>
+        <rect x="46" y="58" width="30" height="14" ${s}/>
+        <line x1="40" y1="23" x2="46" y2="40" ${s}/>
+        <line x1="82" y1="23" x2="76" y2="40" ${s}/>
+        <line x1="60" y1="52" x2="60" y2="58" ${s}/>`);
+    case 'swatch':
+      return wrap(`<rect x="10" y="14" width="22" height="22" ${s}/>
+        <rect x="36" y="14" width="22" height="22" fill="${ink}"/>
+        <rect x="62" y="14" width="22" height="22" ${s}/>
+        <rect x="88" y="14" width="22" height="22" ${s}/>
+        <line x1="10" y1="52" x2="110" y2="52" stroke="${ink}" stroke-width="3"/>
+        <line x1="10" y1="60" x2="90" y2="60" ${s}/>
+        <line x1="10" y1="66" x2="70" y2="66" ${s}/>`);
+    default: return wrap('');
+  }
+}
+
+/* ---------- render each project as a "story" ---------- */
+const stories = CONFIG.projects.map((p,i)=>`
+  <article class="story${i % 2 ? ' story--flip' : ''}">
+    <div class="story__rail mono">
+      <span><b class="no">${String(i+1).padStart(2,'0')}</b> / ${CONFIG.projects.length}</span>
+      <span>${p.tag}</span>
+    </div>
+    <div class="story__grid">
+      <figure class="story__fig">
+        <div class="plate story__plate">
+          <span class="plate__tag mono">${String(i+1).padStart(2,'0')}</span>
+          <div class="plate__icon">${projectSVG(p.diagram)}</div>
+        </div>
+      </figure>
+      <div class="story__body">
+        <a class="story__link" href="#" data-cursor="View &rarr;">
+          <h3><span class="rvl"><span>${p.title}</span></span></h3>
+        </a>
+        <p class="story__tag mono">${p.tag}</p>
+        <p class="story__dek fade" style="--d:120ms">${p.blurb}</p>
+        <a class="link story__cta fade" style="--d:200ms" href="#" data-cursor="View &rarr;">View project <span class="arw">&rarr;</span></a>
+      </div>
+    </div>
+  </article>`).join('');
+document.getElementById('stories').innerHTML = stories;
+
+document.getElementById('foot-mast').innerHTML = `THE <span class="amp">${CONFIG.maskheadShort}</span> TIMES`;
+document.getElementById('foot-meta').innerHTML = `
+  <span>${CONFIG.name} — ${CONFIG.role}</span>
+  <span>Set in Bodoni Moda, Newsreader &amp; IBM Plex Mono</span>
+  <span>${CONFIG.contact.finePrint}</span>
+`;
+
+/* ---------- reveal on scroll ---------- */
+const targets = document.querySelectorAll('.band, .story, .foot, header#front');
+if('IntersectionObserver' in window){
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('is-in'); io.unobserve(e.target); } });
+  }, { rootMargin:'0px 0px -10% 0px', threshold:0 });
+  targets.forEach(t=>io.observe(t));
+} else {
+  targets.forEach(t=>t.classList.add('is-in'));
+}
+requestAnimationFrame(()=>document.querySelector('header#front').classList.add('is-in'));
+
+/* ---------- press-stamp cursor ---------- */
+const cursor = document.getElementById('cursor');
+const fine = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+if(fine){
+  let x=0,y=0,cx=0,cy=0,raf=null;
+  const loop = ()=>{
+    cx += (x-cx)*0.22; cy += (y-cy)*0.22;
+    cursor.style.translate = `${cx}px ${cy}px`;
+    raf = Math.abs(x-cx) > 0.4 || Math.abs(y-cy) > 0.4 ? requestAnimationFrame(loop) : null;
+  };
+  document.addEventListener('pointermove',(e)=>{
+    x = e.clientX; y = e.clientY;
+    if(!raf) raf = requestAnimationFrame(loop);
+  }, { passive:true });
+  document.addEventListener('pointerover',(e)=>{
+    const hit = e.target.closest('[data-cursor]');
+    if(!hit) return;
+    cursor.innerHTML = hit.dataset.cursor;
+    cursor.classList.add('on');
+  });
+  document.addEventListener('pointerout',(e)=>{
+    if(e.target.closest('[data-cursor]')) cursor.classList.remove('on');
+  });
+}
+</script>
+</body>
+</html>
