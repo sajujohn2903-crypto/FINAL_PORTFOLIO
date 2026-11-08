@@ -399,7 +399,7 @@ document.getElementById('contact-email-cta').href = `mailto:${C.email}`;
 
 const channelRows = [
   `<a href="mailto:${C.email}"><span>Email</span><span class="val">${C.email}</span><span class="arw">&rarr;</span></a>`,
-  `<a href="tel:${C.phone.replace(/\s+/g,'')}"><span>Phone</span><span class="val">${C.phone}</span><span class="arw">&rarr;</span></a>`,
+  C.phone ? `<a href="tel:${C.phone.replace(/\s+/g,'')}"><span>Phone</span><span class="val">${C.phone}</span><span class="arw">&rarr;</span></a>` : '',
   `<span><span>Location</span><span class="val">${C.location}</span><span></span></span>`
 ].concat(C.socials.map(s=>`<a href="${s.url}" target="_blank" rel="noopener"><span>${s.label}</span><span class="val">${s.label}</span><span class="arw">&rarr;</span></a>`));
 document.getElementById('contact-channels').innerHTML = channelRows.join('');
